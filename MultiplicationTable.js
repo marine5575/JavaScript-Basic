@@ -12,7 +12,7 @@ function init() {
 
 var body = document.body;
 var question = document.createElement('div');
-
+ 
 init();
 
 body.appendChild(question);
