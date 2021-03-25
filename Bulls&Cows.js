@@ -41,8 +41,6 @@ function init() {
         var tmp = nums.splice(Math.floor(Math.random() * (9 - i)), 1)[0];
         ans.push(tmp);
     }
-
-    console.log(ans);
 }
 
 function setTitle(time) {
