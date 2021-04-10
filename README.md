@@ -15,13 +15,16 @@
 
 ## 2. Lottery
 **1) 문제 상황:**<br>
-JS에서 작동하는 Math.random()은 암호학적으로 안전하지 않다. 이는 결국 Math.random()을 통해 생성하는 난수를 우리가 예측하거나 조작할 수 있음을 의미한다.<p>
+JS에서 작동하는 Math.random()은 암호학적으로 안전하지 않다.<br>
+이는 결국 Math.random()을 통해 생성하는 난수를 우리가 예측하거나 조작할 수 있음을 의미한다.<p>
 **2) 원인 추측:**<br>
 > http://dl.packetstormsecurity.net/papers/general/Google_Chrome_3.0_Beta_Math.random_vulnerability.pdf<br>
 2009년 Chrome에서의 random 함수 취약점에 대해 다룬 문서
 
 이런 문제점이 생긴 것은 아마 난수 생성이라는 과정 자체가 어떠한 값을 가지고 특정 알고리즘에 대입하는 것이기 때문이라고 생각한다.<p>
 **3) 해결 방법 추측:**<br>
-그럼 어떻게 하는가? 알고리즘에 숫자를 대입하는 것이 문제라면 안전한 난수 생성기라는 것은 존재하지 않을 것 아닌가?<br>
-개인적으로 그렇게 생각하긴 하지만, 그럼에도 상대적으로 안전한 알고리즘이라는게 존재하기 마련이다. MDN Web Docs에서는 Math.random() 대신 Web Crypto API의 window.crypto.getRandomValues() 메소드를 이용하길 권장하고 있다.<br>
+그럼 어떻게 하는가?<br>
+알고리즘에 숫자를 대입하는 것이 문제라면 안전한 난수 생성기라는 것은 존재하지 않을 것 아닌가?<br>
+개인적으로 그렇게 생각하긴 하지만, 그럼에도 상대적으로 안전한 알고리즘이라는게 존재하기 마련이다.<br>
+MDN Web Docs에서는 Math.random() 대신 Web Crypto API의 window.crypto.getRandomValues() 메소드를 이용하길 권장하고 있다.<br>
 아마 이걸 사용하면 보안에 관한 문제는 어느정도 해소되지 않을까 싶다.
