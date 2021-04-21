@@ -48,7 +48,20 @@ document.querySelector("#exec").addEventListener('click', function() {
                     return;
                 }
 
-                e.currentTarget.textContent = 'O';
+                var dx = [-1, 0, 1, 0, -1, -1, 1, 1];
+                var dy = [0, -1, 0, 1, -1, 1, -1, 1];
+                var mineCnt = 0;
+
+                for(var i = 0; i < 8; i++) {
+                    var x = horPos + dx[i];
+                    var y = verPos + dy[i];
+
+                    if(x < 0 || x >= hor || y < 0 || y >= ver) continue;
+                    if(dataset[x][y] == code.mine) mineCnt++;
+                }
+
+                if(mineCnt) e.currentTarget.textContent = mineCnt;
+                else dataset[horPos][verPos] = code.blank_open;
             });
 
             td.addEventListener('contextmenu', function(e) {
@@ -62,10 +75,10 @@ document.querySelector("#exec").addEventListener('click', function() {
                 var curVal = dataset[horPos][verPos];
                 var curSig = e.currentTarget.textContent;
 
-                if(curSig === '' || curSig === 'X') {
+                if(curVal === '' || curVal === code.mine) {
                     e.currentTarget.textContent = '!';
 
-                    if(curSig === '') dataset[horPos][verPos] = code.blank_flag;
+                    if(curVal === '') dataset[horPos][verPos] = code.blank_flag;
                     else dataset[horPos][verPos] = code.mine_flag;
                 }
                 else if(curSig === '!') {
